@@ -12,6 +12,7 @@
           <ui-quote-date-input
             label="Birthdate"
             [required]="true"
+            [max]="today"
             [value]="inputStore.input().birthdate.value"
             [error]="inputStore.input().birthdate.error"
             (valueChange)="updateInputs({ key: 'birthdate', value: $event })"

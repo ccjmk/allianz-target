@@ -5,6 +5,8 @@
     [datepicker]="picker"
     [required]="required()"
     [value]="dateValue()"
+    [min]="min()"
+    [max]="max()"
     (dateChange)="onDateChange($event)"
   />
   <nx-datepicker-toggle [for]="picker" nxFormfieldSuffix></nx-datepicker-toggle>

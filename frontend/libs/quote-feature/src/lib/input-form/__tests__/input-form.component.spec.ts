@@ -13,6 +13,7 @@ describe('InputFormComponent', () => {
   let mockedStore: {
     updateInputs: jest.Mock;
     calculate: jest.Mock;
+    resetQuote: jest.Mock;
     input: jest.Mock;
     quote: jest.Mock;
     quoteStatus: jest.Mock;
@@ -65,6 +66,7 @@ describe('InputFormComponent', () => {
     mockedStore = {
       updateInputs: jest.fn(),
       calculate: jest.fn(),
+      resetQuote: jest.fn(),
       input: jest.fn(() => mockState),
       quote: jest.fn(() => mockQuote),
       quoteStatus: jest.fn(() => 'idle'),

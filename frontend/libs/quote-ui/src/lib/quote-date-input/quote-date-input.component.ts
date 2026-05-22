@@ -15,6 +15,8 @@ export class QuoteDateInputComponent {
   value = input<string | null | undefined>();
   error = input<string | null | undefined>();
   required = input<boolean>(false);
+  min = input<Date | null | undefined>();
+  max = input<Date | null | undefined>();
 
   valueChange = output<string>();
 

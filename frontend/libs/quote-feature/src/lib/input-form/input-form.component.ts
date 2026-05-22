@@ -31,7 +31,11 @@ export class InputFormComponent {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
+  protected readonly today = new Date();
+
   constructor() {
+    this.inputStore.resetQuote();
+
     effect(() => {
       if (this.inputStore.quoteStatus() === 'success') {
         this.router.navigate(['summary'], { relativeTo: this.route });
