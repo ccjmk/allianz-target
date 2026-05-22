@@ -1,0 +1,21 @@
+{
+  "name": "quote-ui",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "frontend/libs/quote-ui/src",
+  "prefix": "ui",
+  "projectType": "library",
+  "tags": ["type:ui", "scope:quote"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "frontend/libs/quote-ui/jest.config.cts",
+        "tsConfig": "frontend/libs/quote-ui/tsconfig.spec.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

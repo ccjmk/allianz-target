@@ -1,0 +1,21 @@
+bff:
+  image:
+    repository: target-bff
+    tag: local
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  service:
+    port: 3000
+
+shell:
+  image:
+    repository: target-shell
+    tag: local
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  service:
+    port: 80
+    nodePort: 30080
+  env:
+    bffHost: bff
+    bffPort: "3000"

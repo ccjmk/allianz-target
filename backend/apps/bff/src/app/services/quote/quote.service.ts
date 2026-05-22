@@ -1,14 +1,25 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { QuoteRequestDto, QuoteResponseDto } from '@target/interfaces';
 
 @Injectable()
 export class QuoteService {
-  async getQuote({ beitrag }: QuoteRequestDto): Promise<QuoteResponseDto> {
-    await this.sleep(Math.random() * 4000); // Simulate a real quote service delay 😅
+  async getQuote(requestDto: QuoteRequestDto): Promise<QuoteResponseDto> {
+    const { beitrag, birthdate } = requestDto;
+
+    // FIXME: just for demo's sake
+    // for testing errors
+    if (birthdate === '2000-01-01') {
+      throw new HttpException('This is an explicit error to test error handling in the frontend', HttpStatus.FORBIDDEN);
+    }
+    // for testing timeouts
+    const multiplier = birthdate === '2000-01-02' ? 10000 : 2000;
+    // END-FIXME
+
+    await this.sleep(Math.random() * multiplier); // Simulate a real quote service delay 😅
 
     return {
       basisdaten: {
-        geburtsdatum: '1990-01-01',
+        geburtsdatum: birthdate,
         versicherungsbeginn: '2025-02-01',
         garantieniveau: '90%',
         alterBeiRentenbeginn: 67,

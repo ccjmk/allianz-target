@@ -1,0 +1,6 @@
+<nx-formfield [label]="label()" appearance="auto" floatLabel="auto">
+  <input nxInput type="number" [value]="value()" (input)="onInput($event)" />
+</nx-formfield>
+@if (error()) {
+  <nx-error nxFormfieldError [showIcon]="true">{{ error() }}</nx-error>
+}

@@ -1,22 +1,17 @@
 import { Route } from '@angular/router';
-import { InputLibComponent } from '@target/input-lib';
-
-const ROUTES = {
-  INPUTS: 'inputs',
-};
 
 export const appRoutes: Route[] = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: ROUTES.INPUTS,
+    redirectTo: 'quote',
   },
   {
-    path: ROUTES.INPUTS,
-    component: InputLibComponent,
+    path: 'quote',
+    loadChildren: () => import('@target/quote-feature').then(m => m.quoteRoutes),
   },
   {
     path: '**',
-    redirectTo: ROUTES.INPUTS,
+    redirectTo: 'quote',
   },
 ];

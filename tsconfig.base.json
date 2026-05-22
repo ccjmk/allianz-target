@@ -15,9 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@target/input-lib": ["frontend/libs/input-lib/src/index.ts"],
       "@target/interfaces": ["shared/interfaces/src/index.ts"],
-      "@target/validations": ["shared/validations/src/index.ts"]
+      "@target/validations": ["shared/validations/src/index.ts"],
+      "@target/quote-data-access": ["frontend/libs/quote-data-access/src/index.ts"],
+      "@target/quote-feature": ["frontend/libs/quote-feature/src/index.ts"],
+      "@target/quote-ui": ["frontend/libs/quote-ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

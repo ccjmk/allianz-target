@@ -1,0 +1,51 @@
+<div nxLayout="grid maxwidth">
+    <div nxRow>
+        <div nxCol="12">
+            <h2 nxCopytext class="nx-margin-bottom-4m">
+                Quote Summary
+            </h2>
+        </div>
+    </div>
+
+    @let basicData = quoteStore.quote()?.basisdaten;
+    <div nxRow>
+        <div nxCol="12">
+            <ui-quote-card title="Basic Information">
+                <ui-quote-field label="Birthdate" [value]="basicData?.geburtsdatum | date" />
+                <ui-quote-field label="Insurance start date" [value]="basicData?.versicherungsbeginn | date" />
+                <ui-quote-field label="Guarantee level" [value]="basicData?.garantieniveau" />
+                <ui-quote-field label="Age at Retirement start" [value]="basicData?.alterBeiRentenbeginn" />
+                <ui-quote-field label="Deferral period" [value]="basicData?.aufschubdauer" />
+                <ui-quote-field label="Contribution payment duration" [value]="basicData?.beitragszahlungsdauer" />
+            </ui-quote-card>
+        </div>
+    </div>
+
+    <div nxRow>
+        @let performanceData = quoteStore.quote()?.leistungsmerkmale;
+        <div [nxCol]="subCardsCols()">
+            <ui-quote-card title="Performance features">
+                <ui-quote-field label="Guaranteed min pension" [value]="performanceData?.garantierteMindestrente | currency:'EUR'" />
+                <ui-quote-field label="Single guarantee capital" [value]="performanceData?.einmaligesGarantiekapital | currency:'EUR'" />
+                <ui-quote-field label="Death benefit from retirement age" [value]="performanceData?.todesfallleistungAbAltersrentenbezug" />
+            </ui-quote-card>
+        </div>
+
+        @let contributionData = quoteStore.quote()?.beitrag;
+        <div [nxCol]="subCardsCols()">
+            <ui-quote-card title="Contribution">
+                <ui-quote-field label="Single contribution" [value]="contributionData?.einmalbeitrag | currency:'EUR'" />
+                <ui-quote-field label="Contribution dynamics" [value]="contributionData?.beitragsdynamik" />
+            </ui-quote-card>
+        </div>
+    </div>
+    
+
+    <div nxRow>
+        <div nxCol="4">
+            <button nxButton type="button" (click)="returnToInput()">
+                Return to input
+            </button>
+        </div>
+    </div>
+</div>

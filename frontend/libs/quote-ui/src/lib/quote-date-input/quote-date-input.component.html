@@ -1,0 +1,15 @@
+<nx-formfield [label]="label()" [attr.aria-required]="required() ? 'true' : null">
+  <input
+    nxInput
+    nxDatefield
+    [datepicker]="picker"
+    [required]="required()"
+    [value]="dateValue()"
+    (dateChange)="onDateChange($event)"
+  />
+  <nx-datepicker-toggle [for]="picker" nxFormfieldSuffix></nx-datepicker-toggle>
+  <nx-datepicker #picker></nx-datepicker>
+</nx-formfield>
+@if (error()) {
+  <nx-error nxFormfieldError [showIcon]="true">{{ error() }}</nx-error>
+}

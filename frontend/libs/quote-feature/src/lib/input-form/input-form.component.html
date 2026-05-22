@@ -1,0 +1,117 @@
+<div nxLayout="grid maxwidth">
+  <div nxRow>
+    <div nxCol="12">
+      <p nxCopytext>You can force the BE to throw an error by sending a request with date 01/01/2000</p>
+      <p nxCopytext class="nx-margin-bottom-4m">Sending 02/01/2000 instead will cause a timeout</p>
+    </div>
+  </div>
+  <div nxRow>
+    <div nxCol="12">
+      <div nxRow class="nx-margin-bottom-2m">
+        <div nxCol="12">
+          <ui-quote-date-input
+            label="Birthdate"
+            [required]="true"
+            [value]="inputStore.input().birthdate.value"
+            [error]="inputStore.input().birthdate.error"
+            (valueChange)="updateInputs({ key: 'birthdate', value: $event })"
+          />
+        </div>
+      </div>
+
+      <div nxRow class="nx-margin-bottom-2m">
+        <div nxCol="12,12,8,8">
+          <ui-quote-dropdown-input
+            label="Leistungs-/ Beitragsvorgabe"
+            [value]="inputStore.input().leistungsVorgabe?.value"
+            [options]="leistungsVorgabeOptions"
+            (valueChange)="updateInputs({ key: 'leistungsVorgabe', value: $event })"
+          />
+        </div>
+        <div nxCol="12,12,4,4">
+          <ui-quote-number-input
+            label="Beitrag"
+            [value]="inputStore.input().beitrag.value"
+            [error]="inputStore.input().beitrag.error"
+            (valueChange)="updateInputs({ key: 'beitrag', value: $event })"
+          />
+        </div>
+      </div>
+
+      <div nxRow class="nx-margin-bottom-2m">
+        <div nxCol="12,12,8,8">
+          <ui-quote-dropdown-input
+            label="Berechnung der Laufzeit"
+            [value]="inputStore.input().berechnungDerLaufzeit?.value"
+            [options]="berechnungDerLaufzeitOptions"
+            (valueChange)="updateInputs({ key: 'berechnungDerLaufzeit', value: $event })"
+          />
+        </div>
+        <div nxCol="12,12,4,4">
+          <ui-quote-number-input
+            label="Jahre"
+            [value]="inputStore.input().laufzeit.value"
+            [error]="inputStore.input().laufzeit.error"
+            (valueChange)="updateInputs({ key: 'laufzeit', value: $event })"
+          />
+        </div>
+      </div>
+
+      <div nxRow class="nx-margin-bottom-2m">
+        <div nxCol="12">
+          <ui-quote-dropdown-input
+            label="Beitragszahlungsweise"
+            [value]="inputStore.input().beitragszahlungsweise?.value"
+            [options]="beitragszahlungsweiseOptions"
+            (valueChange)="updateInputs({ key: 'beitragszahlungsweise', value: $event })"
+          />
+        </div>
+      </div>
+
+      <div nxRow>
+        <div nxCol="12">
+          <ui-quote-dropdown-input
+            label="Rentenzahlungsweise"
+            [value]="inputStore.input().rentenzahlungsweise?.value"
+            [options]="rentenzahlungsweiseOptions"
+            (valueChange)="updateInputs({ key: 'rentenzahlungsweise', value: $event })"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div nxRow>
+    <div nxCol="4">
+      <button
+        nxButton
+        type="button"
+        (click)="calculate()"
+        [disabled]="inputStore.isCalculating() || inputStore.hasErrors()"
+      >
+        Berechnen
+        @if(inputStore.isCalculating()) {
+          <nx-spinner class="nx-margin-left-xs" size="medium" />
+        }
+      </button>
+    </div>
+    @if(inputStore.quoteStatus() !== 'idle') {
+      <div nxCol="8">
+        <div class="nx-margin-top-xs">
+          <div class="nx-margin-bottom-s">
+          @switch(inputStore.quoteStatus()) {
+            @case ('loading') { <strong class="nx-margin-right-2xs">Quote loading…</strong> }
+            @case ('aborted') { <strong class="nx-margin-right-2xs">Quote took too long, aborted</strong> }
+            @case ('error')   {
+              <div class="flex align-center">
+                <strong class="nx-margin-right-2xs">{{ inputStore.error() }}</strong>
+                <nx-status-icon type="error" size="s" />
+              </div>
+            }
+            @case ('success') { <!-- Quote success triggers a route navigation --> }
+          }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

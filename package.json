@@ -11,7 +11,18 @@
     "format:check": "nx format:check",
     "format:write": "nx format:write",
     "lint": "nx run-many -t lint",
-    "build": "nx run-many -t build --all"
+    "build": "nx run-many -t build --all",
+    "docker:build:shell": "docker build -f frontend/apps/shell/Dockerfile -t target-shell:local .",
+    "docker:build:bff": "docker build -f backend/apps/bff/Dockerfile -t target-bff:local .",
+    "docker:run:bff": "docker run --rm -d --name bff --network target-net target-bff:local",
+    "docker:run:shell": "docker run --rm -d --name shell --network target-net -p 8080:80 -e BFF_HOST=bff -e BFF_PORT=3000 target-shell:local",
+    "compose:up": "docker compose up -d",
+    "compose:down": "docker compose down",
+    "cluster:create": "kind create cluster --name allianz --config kind-config.yaml",
+    "cluster:delete": "kind delete cluster --name allianz",
+    "kind:load": "kind load docker-image target-bff:local target-shell:local --name allianz",
+    "helm:install": "npm run kind:load && helm upgrade --install allianz ./helm/allianz",
+    "helm:uninstall": "helm uninstall allianz"
   },
   "private": true,
   "dependencies": {

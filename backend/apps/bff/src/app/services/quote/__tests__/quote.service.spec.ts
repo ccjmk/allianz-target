@@ -15,9 +15,10 @@ describe('QuoteService', () => {
 
   describe('getQuote', () => {
     it('should return quote details for given contribution amount', async () => {
+      const givenBirthdate = '1990-12-31';
       const expectedQuote = {
         basisdaten: {
-          geburtsdatum: '1990-01-01',
+          geburtsdatum: givenBirthdate,
           versicherungsbeginn: '2025-02-01',
           garantieniveau: '90%',
           alterBeiRentenbeginn: 67,
@@ -34,7 +35,7 @@ describe('QuoteService', () => {
           beitragsdynamik: '1,5%',
         },
       };
-      const result = await service.getQuote({ beitrag: 1000, laufzeit: 10 });
+      const result = await service.getQuote({ beitrag: 1000, birthdate: givenBirthdate, laufzeit: 10 });
 
       expect(result).toEqual(expectedQuote);
     });

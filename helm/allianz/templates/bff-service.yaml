@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bff
+  labels:
+    app: bff
+    {{- include "target.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  selector:
+    app: bff
+  ports:
+    - name: http
+      port: {{ .Values.bff.service.port }}
+      targetPort: {{ .Values.bff.service.port }}

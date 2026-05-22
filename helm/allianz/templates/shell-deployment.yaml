@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shell
+  labels:
+    app: shell
+    {{- include "target.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.shell.replicaCount }}
+  selector:
+    matchLabels:
+      app: shell
+  template:
+    metadata:
+      labels:
+        app: shell
+    spec:
+      containers:
+        - name: shell
+          image: "{{ .Values.shell.image.repository }}:{{ .Values.shell.image.tag }}"
+          imagePullPolicy: {{ .Values.shell.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.shell.service.port }}
+          env:
+            - name: BFF_HOST
+              value: {{ .Values.shell.env.bffHost | quote }}
+            - name: BFF_PORT
+              value: {{ .Values.shell.env.bffPort | quote }}

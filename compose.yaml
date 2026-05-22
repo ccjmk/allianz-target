@@ -1,0 +1,30 @@
+services:
+  bff:
+    image: target-bff:local
+    build:
+      context: .
+      dockerfile: backend/apps/bff/Dockerfile
+    container_name: bff
+    networks:
+      - target-net
+
+  shell:
+    image: target-shell:local
+    build:
+      context: .
+      dockerfile: frontend/apps/shell/Dockerfile
+    container_name: shell
+    ports:
+      - "8080:80"
+    environment:
+      BFF_HOST: bff
+      BFF_PORT: "3000"
+    depends_on:
+      - bff
+    networks:
+      - target-net
+
+networks:
+  target-net:
+    name: target-net
+    driver: bridge

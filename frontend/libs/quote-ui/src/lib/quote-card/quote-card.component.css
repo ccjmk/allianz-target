@@ -1,0 +1,16 @@
+:host {
+    display: block;
+    width: 100%;
+    filter: sepia(1);
+}
+
+nx-card {
+    display: block;
+    width: 100%;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

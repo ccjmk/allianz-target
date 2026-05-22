@@ -1,6 +1,8 @@
 import { InputDto } from '@target/validations';
 
-export interface QuoteRequestDto extends InputDto {}
+export type QuoteStatus = 'idle' | 'loading' | 'success' | 'aborted' | 'error';
+
+export interface QuoteRequestDto extends InputDto { }
 
 export interface QuoteResponseDto {
   basisdaten: QuoteBasisdatenDto;

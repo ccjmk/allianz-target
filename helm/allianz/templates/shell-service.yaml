@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shell
+  labels:
+    app: shell
+    {{- include "target.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  selector:
+    app: shell
+  ports:
+    - name: http
+      port: {{ .Values.shell.service.port }}
+      targetPort: {{ .Values.shell.service.port }}
+      nodePort: {{ .Values.shell.service.nodePort }}

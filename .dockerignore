@@ -1,0 +1,11 @@
+node_modules
+dist
+coverage
+tmp
+.git
+.nx
+.vscode
+.idea
+**/*.log
+**/.DS_Store
+NOTES-FOR-REVIEW.md
