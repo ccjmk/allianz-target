@@ -1,16 +1,12 @@
 import { z } from 'zod';
 import { isOver18YearsOld, isValidDate } from './date.validations';
+import { leistungsVorgabeOptions } from './leistungs-vorgabe';
+import { berechnungDerLaufzeitOptions } from './berechnung-der-laufzeit';
+import { beitragszahlungsweiseOptions } from './beitragszahlungsweise';
+import { rentenzahlungsweiseOptions } from './rentenzahlungsweise';
 
 export const InputDtoSchema = z.object({
-  leistungsVorgabe:
-    z.enum([
-      'Beitrag',
-      'Einmalbeitrag',
-      'Garantierte Mindestrente',
-      'Garantiekapital',
-      'Gesamtkapital',
-      'Gesamtrente',
-    ]).nullish(),
+  leistungsVorgabe: z.enum(leistungsVorgabeOptions).nullish(),
 
   beitrag: z
     .number()
@@ -18,7 +14,7 @@ export const InputDtoSchema = z.object({
     .max(100000, 'Der Beitrag darf höchstens 100.000€ betragen'),
 
   berechnungDerLaufzeit:
-    z.enum(['Alter bei Rentenbeginn', 'Aufschubdauer']).nullish(),
+    z.enum(berechnungDerLaufzeitOptions).nullish(),
 
   laufzeit: z
     .number()
@@ -26,15 +22,10 @@ export const InputDtoSchema = z.object({
     .max(100, 'Die Laufzeit darf höchstens 40 Jahre betragen'),
 
   beitragszahlungsweise:
-    z.enum(['Einmalbeitrag', 'Monatliche Beiträge']).nullish(),
+    z.enum(beitragszahlungsweiseOptions).nullish(),
 
   rentenzahlungsweise:
-    z.enum([
-      'Monatliche Renten',
-      'Vierteljährliche Renten',
-      'Halbjährliche Renten',
-      'Jährliche Renten',
-    ]).nullish(),
+    z.enum(rentenzahlungsweiseOptions).nullish(),
 
   birthdate: z
     .iso.date()

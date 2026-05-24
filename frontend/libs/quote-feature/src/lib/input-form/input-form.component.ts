@@ -7,6 +7,10 @@ import { NxStatusIconComponent } from '@aposin/ng-aquila/icon';
 import { NxSpinnerComponent } from '@aposin/ng-aquila/spinner';
 import { Input, QuoteStore } from '@target/quote-data-access';
 import { QuoteDateInputComponent, QuoteDropdownInputComponent, QuoteNumberInputComponent } from '@target/quote-ui';
+import { beitragszahlungsweiseOptions } from 'shared/validations/src/lib/input/beitragszahlungsweise';
+import { berechnungDerLaufzeitOptions } from 'shared/validations/src/lib/input/berechnung-der-laufzeit';
+import { leistungsVorgabeOptions } from 'shared/validations/src/lib/input/leistungs-vorgabe';
+import { rentenzahlungsweiseOptions } from 'shared/validations/src/lib/input/rentenzahlungsweise';
 
 @Component({
   selector: 'feat-input-form',
@@ -51,29 +55,8 @@ export class InputFormComponent {
     this.inputStore.calculate();
   }
 
-  protected readonly leistungsVorgabeOptions = [
-    'Beitrag',
-    'Einmalbeitrag',
-    'Garantierte Mindestrente',
-    'Garantiekapital',
-    'Gesamtkapital',
-    'Gesamtrente',
-  ] as const;
-
-  protected readonly berechnungDerLaufzeitOptions = [
-    'Alter bei Rentenbeginn',
-    'Aufschubdauer',
-  ] as const;
-
-  protected readonly beitragszahlungsweiseOptions = [
-    'Einmalbeitrag',
-    'Monatliche Beiträge',
-  ] as const;
-
-  protected readonly rentenzahlungsweiseOptions = [
-    'Monatliche Renten',
-    'Vierteljährliche Renten',
-    'Halbjährliche Renten',
-    'Jährliche Renten',
-  ] as const;
+  protected readonly leistungsVorgabeOptions = leistungsVorgabeOptions;
+  protected readonly berechnungDerLaufzeitOptions = berechnungDerLaufzeitOptions;
+  protected readonly beitragszahlungsweiseOptions = beitragszahlungsweiseOptions;
+  protected readonly rentenzahlungsweiseOptions = rentenzahlungsweiseOptions;
 }
