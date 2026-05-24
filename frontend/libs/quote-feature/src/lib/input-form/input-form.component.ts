@@ -7,10 +7,7 @@ import { NxStatusIconComponent } from '@aposin/ng-aquila/icon';
 import { NxSpinnerComponent } from '@aposin/ng-aquila/spinner';
 import { Input, QuoteStore } from '@target/quote-data-access';
 import { QuoteDateInputComponent, QuoteDropdownInputComponent, QuoteNumberInputComponent } from '@target/quote-ui';
-import { beitragszahlungsweiseOptions } from 'shared/validations/src/lib/input/beitragszahlungsweise';
-import { berechnungDerLaufzeitOptions } from 'shared/validations/src/lib/input/berechnung-der-laufzeit';
-import { leistungsVorgabeOptions } from 'shared/validations/src/lib/input/leistungs-vorgabe';
-import { rentenzahlungsweiseOptions } from 'shared/validations/src/lib/input/rentenzahlungsweise';
+import { beitragszahlungsweiseOptions, berechnungDerLaufzeitOptions, leistungsVorgabeOptions, rentenzahlungsweiseOptions } from '@target/validations';
 
 @Component({
   selector: 'feat-input-form',
