@@ -38,6 +38,8 @@ export const QuoteStore = signalStore(
   })),
   withMethods((store, quoteService = inject(QuoteService)) => ({
     updateInputs: (input: Input): void => {
+      // FIXME: If input validations are linked between fields, this can generate
+      // invalid states; not an issue with current validations but to keep in mind.
       const nextInputState = {
         ...store.input(),
         [input.key]: { value: input.value, valid: true, error: null },

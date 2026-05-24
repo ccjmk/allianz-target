@@ -1,5 +1,5 @@
 export function isValidDate(date: string): boolean {
-    return !isNaN(new Date(date).getTime());
+    return !isNaN(new Date(date).getTime()); // catches impossible dates like 2024-05-32
 }
 
 export function isOver18YearsOld(date: string): boolean {

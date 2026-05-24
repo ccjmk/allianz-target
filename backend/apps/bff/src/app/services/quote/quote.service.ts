@@ -12,10 +12,12 @@ export class QuoteService {
       throw new HttpException('This is an explicit error to test error handling in the frontend', HttpStatus.FORBIDDEN);
     }
     // for testing timeouts
-    const multiplier = birthdate === '2000-01-02' ? 10000 : 2000;
+    const delay = birthdate === '2000-01-02' ? 10000 : 0;
     // END-FIXME
 
-    await this.sleep(Math.random() * multiplier); // Simulate a real quote service delay 😅
+    // decreased the delay a little to make tests almost guaranteed,
+    // unless using the Delay date specifically
+    await this.sleep(Math.random() * 2000 + delay); // Simulate a real quote service delay 😅
 
     return {
       basisdaten: {
