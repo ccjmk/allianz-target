@@ -23,7 +23,7 @@
 
     <div nxRow>
         @let performanceData = quoteStore.quote()?.leistungsmerkmale;
-        <div [nxCol]="subCardsCols()">
+        <div nxCol="12,12,12,6,6,6,6">
             <ui-quote-card title="Performance features">
                 <ui-quote-field label="Guaranteed min pension" [value]="performanceData?.garantierteMindestrente | currency:'EUR'" />
                 <ui-quote-field label="Single guarantee capital" [value]="performanceData?.einmaligesGarantiekapital | currency:'EUR'" />
@@ -32,7 +32,7 @@
         </div>
 
         @let contributionData = quoteStore.quote()?.beitrag;
-        <div [nxCol]="subCardsCols()">
+        <div nxCol="12,12,12,6,6,6,6">
             <ui-quote-card title="Contribution">
                 <ui-quote-field label="Single contribution" [value]="contributionData?.einmalbeitrag | currency:'EUR'" />
                 <ui-quote-field label="Contribution dynamics" [value]="contributionData?.beitragsdynamik" />

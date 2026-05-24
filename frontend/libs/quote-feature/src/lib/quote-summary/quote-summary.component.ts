@@ -6,7 +6,7 @@ import { NxButtonModule } from '@aposin/ng-aquila/button';
 import { NxColComponent, NxLayoutComponent, NxRowComponent } from "@aposin/ng-aquila/grid";
 import { NxBreakpoints, NxViewportService } from '@aposin/ng-aquila/utils';
 import { QuoteStore } from '@target/quote-data-access'
-import { QuoteCardComponent,QuoteFieldComponent } from "@target/quote-ui";
+import { QuoteCardComponent, QuoteFieldComponent } from "@target/quote-ui";
 
 @Component({
     imports: [CommonModule, NxLayoutComponent, NxRowComponent, NxColComponent, NxButtonModule, QuoteFieldComponent, QuoteCardComponent],
@@ -18,15 +18,6 @@ export class QuoteSummaryComponent {
     private readonly router = inject(Router);
 
     protected readonly quoteStore = inject(QuoteStore);
-
-    protected subCardsCols = signal("6"); // uug.. nxCol is a string?!
-
-    constructor() {
-        this.viewportService
-            .max(NxBreakpoints.BREAKPOINT_LARGE)
-            .pipe(takeUntilDestroyed())
-            .subscribe(isLargeOrSmaller => this.subCardsCols.set(isLargeOrSmaller ? "12" : "6"));
-    }
 
     returnToInput(): void {
         this.quoteStore.resetQuote();
